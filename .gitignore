@@ -1,3 +1,15 @@
+# ── Project-specific ──────────────────────────────────────────────────────────
+# Data directory (all files — re-downloadable from ChEMBL)
+data/
+
+# Model checkpoints (large binaries)
+checkpoints/
+
+# macOS metadata
+.DS_Store
+**/.DS_Store
+
+# ── Python standard ───────────────────────────────────────────────────────────
 # Byte-compiled / optimized / DLL files
 __pycache__/
 *.py[codz]
