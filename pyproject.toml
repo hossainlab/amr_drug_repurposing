@@ -6,6 +6,7 @@ readme = "README.md"
 requires-python = ">=3.11"
 dependencies = [
     "chembl-webresource-client>=0.10.9",
+    "datasets>=4.8.5",
     "httpx>=0.28.1",
     "imbalanced-learn>=0.14.1",
     "jupyter>=1.1.1",
@@ -19,4 +20,6 @@ dependencies = [
     "seaborn>=0.13.2",
     "shap>=0.51.0",
     "torch>=2.12.0",
+    "transformers>=5.8.1",
+    "accelerate>=1.1.0",
 ]
