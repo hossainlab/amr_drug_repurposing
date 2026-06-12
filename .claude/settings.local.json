@@ -2,7 +2,16 @@
   "permissions": {
     "allow": [
       "Bash(curl:*)",
-      "Bash(python3:*)"
+      "Bash(python3:*)",
+      "Bash(python -c \"import jupyter; print\\('ok'\\)\")",
+      "Bash(python *)",
+      "Bash(.venv/bin/jupyter-nbconvert --ClearOutputPreprocessor.enabled=True --to notebook --inplace notebooks/03_publication_figures.ipynb)",
+      "Bash(.venv/bin/jupyter-nbconvert --ClearOutputPreprocessor.enabled=True --to notebook --inplace notebooks/01_data_preprocessing.ipynb notebooks/02_modeling.ipynb notebooks/03_publication_figures.ipynb)",
+      "Bash(grep -vE '\\\\.py$')",
+      "Bash(cd *)",
+      "Bash(git add *)",
+      "Bash(grep -vE '\\\\.svg$')",
+      "Bash(git ls-files *)"
     ]
   }
 }
