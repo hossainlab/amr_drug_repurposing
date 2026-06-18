@@ -65,7 +65,7 @@ PANEL_KW = dict(fontsize=9, fontweight="bold", va="top")
 
 
 def add_panel_label(ax, letter, x=-0.14, y=1.05):
-    ax.text(x, y, letter, transform=ax.transAxes, **PANEL_KW)
+    ax.text(x, y, letter.lower(), transform=ax.transAxes, **PANEL_KW)
 
 
 def save_fig(fig, name):

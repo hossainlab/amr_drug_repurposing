@@ -34,26 +34,35 @@ def main():
                      va="center", fontsize=5.5)
     add_panel_label(axes[0], "A", x=-0.22)
 
-    # Panel B: size vs AUC bubble
-    active_frac = df_tr["n_active"] / df_tr["n_total"]
-    sc = axes[1].scatter(df_tr["n_total"], df_tr["roc_auc"], s=active_frac * 180 + 20,
-                         c=df_tr["roc_auc"], cmap="RdYlGn", vmin=0.5, vmax=1.0,
-                         edgecolors="none", alpha=0.9, zorder=3)
-    for _, row in df_tr.iterrows():
-        axes[1].annotate(row["short"], xy=(row["n_total"], row["roc_auc"]),
-                         xytext=(5, 3), textcoords="offset points", fontsize=5.5, ha="left")
+    # Panel B: training-set size vs AUC, coloured by active fraction.
+    # (AUC is already the y-axis, so colour encodes the *new* dimension — class balance.)
+    active_frac = df_tr["n_active"] / df_tr["n_total"] * 100
+    sc = axes[1].scatter(df_tr["n_total"], df_tr["roc_auc"], s=70, c=active_frac,
+                         cmap="viridis", vmin=0, vmax=75, edgecolors="white",
+                         linewidths=0.5, zorder=3)
     cb = fig.colorbar(sc, ax=axes[1], shrink=0.85, pad=0.03)
-    cb.set_label("ROC-AUC", fontsize=6); cb.ax.tick_params(labelsize=5.5)
-    axes[1].axhline(0.5, color=C["neutral"], ls=":", lw=0.7, zorder=2)
+    cb.set_label("Active fraction (%)", fontsize=6); cb.ax.tick_params(labelsize=5.5)
+
+    # Per-organism label offsets (points), hand-tuned to avoid overlap in the
+    # 0.94 cluster; keyed by species epithet so order/sorting is irrelevant.
+    OFF = {
+        "baumannii": (-9, 7, "right"), "coli": (1, 10, "center"),
+        "pneumoniae": (0, -12, "center"), "aeruginosa": (-9, -9, "right"),
+        "cloacae": (0, 11, "center"), "aureus": (9, 0, "left"),
+        "tuberculosis": (-9, 0, "right"), "faecium": (9, -2, "left"),
+    }
+    for _, row in df_tr.iterrows():
+        dx, dy, ha = OFF.get(row["organism"].split()[1], (8, 0, "left"))
+        axes[1].annotate(row["short"], xy=(row["n_total"], row["roc_auc"]),
+                         xytext=(dx, dy), textcoords="offset points", fontsize=6,
+                         ha=ha, va="center",
+                         arrowprops=dict(arrowstyle="-", color=C["neutral"], lw=0.4,
+                                         shrinkA=0, shrinkB=3))
     axes[1].set_xlabel("Training samples"); axes[1].set_ylabel("ROC-AUC")
+    axes[1].set_xlim(2200, 13000); axes[1].set_ylim(0.875, 0.99)
     axes[1].xaxis.set_major_formatter(mticker.FuncFormatter(
         lambda x, _: f"{int(x/1000)}k" if x >= 1000 else str(int(x))))
     add_panel_label(axes[1], "B", x=-0.22)
-    for frac, label in [(0.10, "10%"), (0.40, "40%"), (0.70, "70% active")]:
-        axes[1].scatter([], [], s=frac * 180 + 20, color=C["neutral"], alpha=0.6,
-                        label=label, edgecolors="none")
-    axes[1].legend(title="Active fraction", fontsize=5.5, title_fontsize=5.5,
-                   loc="lower right", handletextpad=0.4, labelspacing=0.5)
 
     save_fig(fig, "figure_S3_organism_performance")
 

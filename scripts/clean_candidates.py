@@ -20,9 +20,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 from antibiotic_filter import (  # noqa: E402
     build_antibiotic_index,
     connectivity_key,
-    is_antibiotic,
     parse_atc,
-    ANTIBIOTIC_ATC,
+    is_antifungal_or_antiviral,
     _name_is_antibiotic,
 )
 
@@ -58,9 +57,15 @@ def main() -> int:
     name_col = "drug_name" if "drug_name" in cand.columns else cand.columns[1]
     smi_col = "smiles" if "smiles" in cand.columns else "canonical_smiles"
 
+    atc_col = "atc_codes" if "atc_codes" in cand.columns else None
     reasons = []
     for _, row in cand.iterrows():
         nm, smi = row[name_col], row.get(smi_col, "")
+        atc = parse_atc(row[atc_col]) if atc_col else []
+        # KEEP-override: antifungals/antivirals are never antibiotics
+        if is_antifungal_or_antiviral(atc, nm):
+            reasons.append("")
+            continue
         why = []
         if _name_is_antibiotic(nm):
             why.append("name-stem")

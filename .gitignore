@@ -5,6 +5,9 @@ data/
 # Model checkpoints (large binaries)
 checkpoints/
 
+# Claude Code guidance (local only)
+CLAUDE.md
+
 # macOS metadata
 .DS_Store
 **/.DS_Store

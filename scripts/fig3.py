@@ -25,6 +25,7 @@ def main():
                  edgecolor="none", zorder=3)
     axes[0].set_yticks(y_pos); axes[0].set_yticklabels(top_n["label"], fontsize=6.5)
     axes[0].invert_yaxis()
+    axes[0].set_ylim(len(top_n) - 0.5, -0.5)
     axes[0].axvline(0.5, color=C["inactive"], ls="--", lw=0.7, zorder=4)
     axes[0].axvline(0.8, color=C["mlp"], ls="--", lw=0.7, zorder=4)
     axes[0].set_xlabel("Ensemble probability (MLP + RF)")
@@ -35,12 +36,12 @@ def main():
         axes[0].text(p + 0.01, i, f"{p:.3f}", va="center", fontsize=5.5,
                      color="white" if p > 0.95 else "black")
     axes[0].legend(handles=[
-        mpatches.Patch(color="#2166AC", label="p ≥ 0.8 (high confidence)"),
         mpatches.Patch(color="#D6604D", label="0.6 ≤ p < 0.8"),
         mpatches.Patch(color="#969696", label="p < 0.6"),
         plt.Line2D([0], [0], color=C["inactive"], ls="--", lw=0.9, label="p = 0.5 threshold"),
         plt.Line2D([0], [0], color=C["mlp"], ls="--", lw=0.9, label="p = 0.8 threshold"),
-    ], fontsize=5.5, loc="lower right", handlelength=1.2)
+    ], fontsize=5.5, loc="upper center", bbox_to_anchor=(0.5, -0.06), ncol=4,
+        handlelength=1.4, columnspacing=1.3, handletextpad=0.5, frameon=False)
     add_panel_label(axes[0], "A", x=-0.16)
 
     # Panel B: MLP vs RF agreement scatter

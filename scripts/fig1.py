@@ -29,7 +29,9 @@ def main():
     ax1.barh(y_pos, org_sorted["Active"], height=0.55, left=org_sorted["Inactive"],
              color=C["active"], label="Active", zorder=3)
     ax1.set_yticks(y_pos); ax1.set_yticklabels(org_sorted.index, fontsize=6.5)
-    ax1.set_xlabel("Compound count"); ax1.legend(loc="lower right", fontsize=6)
+    ax1.set_xlabel("Compound count")
+    ax1.legend(loc="lower left", bbox_to_anchor=(0.0, 1.01), ncol=2, fontsize=6,
+               frameon=False, handlelength=1.2, columnspacing=1.2, handletextpad=0.4)
     ax1.xaxis.set_major_formatter(mticker.FuncFormatter(
         lambda x, _: f"{int(x/1000)}k" if x >= 1000 else str(int(x))))
     for i, (_, row) in enumerate(org_sorted.iterrows()):

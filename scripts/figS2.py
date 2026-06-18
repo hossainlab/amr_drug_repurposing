@@ -33,8 +33,6 @@ def main():
     ax.legend(fontsize=5.5)
     ax.xaxis.set_major_formatter(mticker.FuncFormatter(
         lambda x, _: f"{int(x/1000)}k" if x >= 1000 else str(int(x))))
-    add_panel_label(ax, "A", x=-0.18)
-
     save_fig(fig, "figure_S2_chemberta_loss")
 
 

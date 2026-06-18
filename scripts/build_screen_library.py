@@ -30,6 +30,7 @@ from antibiotic_filter import (  # noqa: E402
     connectivity_key,
     parse_atc,
     parent_chembl_id,
+    is_antifungal_or_antiviral,
     _atc_is_antibiotic,
     _name_is_antibiotic,
 )
@@ -77,8 +78,13 @@ def main() -> int:
 
     reasons = []
     for _, row in df.iterrows():
+        atc = parse_atc(row.get("atc_classifications"))
+        # KEEP-override: antifungals/antivirals are never antibiotics
+        if is_antifungal_or_antiviral(atc, row.get("pref_name", "")):
+            reasons.append("")
+            continue
         why = []
-        if _atc_is_antibiotic(parse_atc(row.get("atc_classifications"))):
+        if _atc_is_antibiotic(atc):
             why.append("own-ATC")
         pid = parent_chembl_id(row.get("molecule_hierarchy"))
         if pid and pid in id_to_atc and _atc_is_antibiotic(id_to_atc[pid]):

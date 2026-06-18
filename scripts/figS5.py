@@ -25,8 +25,6 @@ def main():
         h = bar.get_height()
         ax.text(bar.get_x() + bar.get_width() / 2, h + 0.002, f"{h:.3f}",
                 ha="center", va="bottom", fontsize=5.5)
-    add_panel_label(ax, "A", x=-0.18)
-
     save_fig(fig, "figure_S5_model_comparison")
 
 

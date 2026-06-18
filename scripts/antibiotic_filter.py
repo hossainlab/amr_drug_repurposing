@@ -47,8 +47,26 @@ from rdkit import RDLogger
 
 RDLogger.DisableLog("rdApp.*")  # silence rdkit parse noise
 
-# ── ATC prefixes that mark systemic antibacterials / anti-mycobacterials ──────
-ANTIBIOTIC_ATC = ("J01", "J04")
+# ── ATC prefixes that mark ANTIBACTERIAL / ANTISEPTIC drugs ───────────────────
+# Scope = "non-antibiotic" means antibacterials + antiseptics excluded; antivirals
+# (J05), antifungals (J02/D01/G01AF/A07AC), and antiprotozoals (P01) are KEPT.
+# Antibacterials live in many ATC classes, not just systemic J01 — also topical,
+# intestinal, ophthalmic/otic, and antiseptic groups. Prefixes are pinned at the
+# subgroup level so antifungal siblings (e.g. G01AF, A07AC) are NOT swept in.
+ANTIBIOTIC_ATC = (
+    "J01",                                  # antibacterials for systemic use
+    "J04",                                  # antimycobacterials (anti-TB/leprosy)
+    "A07AA", "A07AB", "A07AX",              # intestinal antibiotics / sulfonamides / other
+    "D06A",                                 # antibiotics for topical use
+    "D08A",                                 # antiseptics & disinfectants
+    "D09AA",                                # medicated dressings with antiinfectives
+    "D10AF",                                # anti-infectives for acne
+    "G01AA", "G01AB", "G01AC", "G01AX",    # gynaecological antibacterials/antiseptics
+    "R02AB",                                # throat antibiotics
+    "S01AA", "S01AB", "S01AX",             # ophthalmic antiinfectives (antibacterial)
+    "S02AA",                                # otic antiinfectives
+    "S03AA",                                # ophthalmological/otological antiinfectives
+)
 
 # ── indication_class keywords (only fires if the column is present) ───────────
 INDICATION_KW = [
@@ -82,11 +100,50 @@ NAME_KW = [
     "neomycin", "kanamycin", "netilmicin", "spectinomycin",
     "tetracycline", "doxycycline", "minocycline", "tigecycline", "omadacycline",
     "meropenem", "imipenem", "ertapenem", "aztreonam",
+    "clavulan",                                       # clavulanic acid (β-lactam inhibitor)
     "pristin", "quinupristin", "dalfopristin",        # streptogramins (leaked before)
     "oritavancin", "dalbavancin", "telavancin",
     "lefamulin", "fidaxomicin", "retapamulin", "mupirocin", "bacitracin",
     "rifaximin", "nalidixic", "novobiocin", "fusidic",
+    # nitrofuran antibacterials (furazolidone slipped through J01-only filtering)
+    "furazolidone", "nitrofural", "nitrofurazone", "nifuroxazide", "furaltadone",
+    # antibacterial antiseptics / biocides (topical, ophthalmic, oral)
+    "clioquinol", "chlorquinaldol", "polihexanide", "polyhexanide",
+    "chlorhexidine", "hexamidine", "octenidine", "cetrimide", "cetrimonium",
+    "cetylpyridinium", "benzalkonium", "dequalinium", "triclosan",
+    "hexachlorophene", "chloroxylenol", "hexetidine", "taurolidine",
+    # antiseptic dyes (gentian/crystal violet, acridines)
+    "rosanilin", "gentian violet", "methylrosanil", "acriflavin",
+    "proflavin", "aminacrine", "ethacridine",
 ]
+
+
+# ── Antifungal / antiviral KEEP-override ──────────────────────────────────────
+# Scope keeps antifungals & antivirals. Some are mis-shelved under antibacterial
+# ATC subgroups (e.g. amphotericin A07AA07, ciclopirox G01AX12, natamycin S01AA10),
+# so without this override the broad ATC sweep would wrongly drop them. A drug
+# matching an antifungal/antiviral ATC OR name stem is NEVER flagged as antibiotic.
+# NOTE: deliberately NOT including antiprotozoal P01 — clioquinol is dual-coded
+# antiprotozoal + antibacterial antiseptic and must stay excluded.
+KEEP_ATC = ("J02", "D01", "A07AC", "G01AF", "G01AG", "J05", "D06B")
+KEEP_NAME = [
+    # azole / polyene / allylamine / other antifungals
+    "conazole", "amphotericin", "nystatin", "natamycin", "ciclopirox",
+    "terbinafine", "naftifine", "butenafine", "griseofulvin", "flucytosine",
+    "tolnaftate", "undecylenic", "tavaborole", "luliconazole", "efinaconazole",
+    "tioconazole", "amorolfine", "caspofungin", "micafungin", "anidulafungin",
+    # antivirals (subset that may carry odd ATC)
+    "ciclovir", "covir", "navir", "buvir", "asvir", "tegravir", "vudine",
+    "oseltamivir", "zanamivir", "baloxavir",
+]
+
+
+def is_antifungal_or_antiviral(atc_list: list[str], name: str) -> bool:
+    """KEEP-override: True if clearly antifungal/antiviral (never an antibiotic)."""
+    if any(c.startswith(KEEP_ATC) for c in atc_list):
+        return True
+    n = str(name).lower()
+    return any(kw in n for kw in KEEP_NAME)
 
 
 def parse_atc(val) -> list[str]:
@@ -177,6 +234,12 @@ def build_antibiotic_index(df: pd.DataFrame) -> dict:
     used_parent = False
     for _, row in df.iterrows():
         atc = parse_atc(row.get("atc_classifications"))
+        name = row.get("pref_name", "")
+
+        # KEEP-override wins: antifungals/antivirals are never antibiotics
+        if is_antifungal_or_antiviral(atc, name):
+            continue
+
         by_atc = _atc_is_antibiotic(atc)
 
         by_parent = False
@@ -186,7 +249,7 @@ def build_antibiotic_index(df: pd.DataFrame) -> dict:
                 by_parent = True
                 used_parent = True
 
-        by_name = _name_is_antibiotic(row.get("pref_name", ""))
+        by_name = _name_is_antibiotic(name)
         by_ind = has_ind and _indication_is_antibiotic(row.get("indication_class"))
 
         if by_atc or by_parent or by_name or by_ind:
@@ -205,6 +268,9 @@ def build_antibiotic_index(df: pd.DataFrame) -> dict:
 
 def is_antibiotic(smiles: str, name: str, index: dict) -> bool:
     """True if this molecule is an antibiotic by connectivity OR name."""
+    # KEEP-override by name (no ATC available at candidate level)
+    if is_antifungal_or_antiviral([], name):
+        return False
     if _name_is_antibiotic(name):
         return True
     ck = connectivity_key(smiles)

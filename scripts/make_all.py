@@ -6,7 +6,8 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).resolve().parent))
 
-MODULES = ["fig1", "fig2", "fig3", "fig4", "fig5",
+MODULES = ["fig_workflow", "fig_model",
+           "fig1", "fig2", "fig3", "fig4", "fig5",
            "figS1", "figS2", "figS3", "figS4", "figS5"]
 
 

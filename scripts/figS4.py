@@ -11,6 +11,8 @@ ADMET_LABS = {
     "rings": "Ring count", "qed": "QED score",
 }
 ADMET_REFS = {"mw": 500, "logp": 5, "tpsa": 140, "hbd": 5, "hba": 10, "rot_bonds": 10}
+# Discrete integer-valued counts — bin on whole numbers, not 16 fractional bins.
+ADMET_DISCRETE = {"hbd", "hba", "rot_bonds", "rings"}
 
 
 def main():
@@ -29,15 +31,28 @@ def main():
 
     for idx, col in enumerate(present):
         ax = axes_flat[idx]
-        ax.hist(top50[col].dropna(), bins=16, color=C["active"], edgecolor="white",
-                linewidth=0.25, alpha=0.85, zorder=3)
+        vals = top50[col].dropna()
+        if col in ADMET_DISCRETE:
+            lo, hi = int(np.floor(vals.min())), int(np.ceil(vals.max()))
+            bins = np.arange(lo - 0.5, hi + 1.5, 1.0)        # one bar per integer
+            ax.xaxis.set_major_locator(mticker.MaxNLocator(integer=True))
+        else:
+            bins = 16
+        ax.hist(vals, bins=bins, color=C["active"], edgecolor="white",
+                linewidth=0.4, alpha=0.85, zorder=3)
         if col in ADMET_REFS:
-            ax.axvline(ADMET_REFS[col], color=C["inactive"], ls="--", lw=0.8,
-                       label=f"Ro5/Veber = {ADMET_REFS[col]}", zorder=4)
-            ax.legend(fontsize=5.0, handlelength=1.0)
+            ref = ADMET_REFS[col]
+            ax.axvline(ref, color=C["inactive"], ls="--", lw=0.8, zorder=4)
+            # Inline label above the plot — same meaning every panel, never on the bars.
+            xmax = ax.get_xlim()[1]
+            ha = "right" if ref >= 0.92 * xmax else "center"
+            ax.annotate(f"Ro5/Veber ≤ {ref}", xy=(ref, 1.0), xycoords=("data", "axes fraction"),
+                        xytext=(0, 2), textcoords="offset points", ha=ha, va="bottom",
+                        fontsize=5.0, color=C["inactive"])
         ax.set_xlabel(ADMET_LABS.get(col, col), fontsize=6.5)
         ax.set_ylabel("Count", fontsize=6.5)
         ax.tick_params(labelsize=5.5)
+        ax.yaxis.set_major_locator(mticker.MaxNLocator(integer=True))
         add_panel_label(ax, chr(65 + idx), x=-0.18, y=1.08)
 
     for idx in range(len(present), len(axes_flat)):

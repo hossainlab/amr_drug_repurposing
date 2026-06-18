@@ -11,7 +11,8 @@
       "Bash(cd *)",
       "Bash(git add *)",
       "Bash(grep -vE '\\\\.svg$')",
-      "Bash(git ls-files *)"
+      "Bash(git ls-files *)",
+      "Bash(awk '{print $5, $NF}')"
     ]
   }
 }

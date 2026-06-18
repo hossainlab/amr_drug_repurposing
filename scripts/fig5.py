@@ -42,8 +42,6 @@ def main():
             ax.spines[spine].set_visible(False)
     fig.axes[0].set_xlabel(
         "SHAP value (contribution to predicted antibacterial probability)", fontsize=7)
-    fig.text(0.01, 0.99, "A", fontsize=9, fontweight="bold", va="top", ha="left",
-             transform=fig.transFigure)
     plt.tight_layout(pad=0.3)
     save_fig(fig, "figure_5_shap_importance")
 
