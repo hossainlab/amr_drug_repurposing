@@ -1,0 +1,13 @@
+target,slug,pathogen_scope,validated_drug_class,note
+Beta-lactamase,beta_lactamase,Gram-negative + S. aureus,beta-lactamase inhibitors (clavulanate/avibactam),resistance enzyme; inhibitors restore beta-lactam activity
+Beta-lactamase TEM,beta_lactamase_tem,Enterobacterales (E. coli/Klebsiella),beta-lactamase inhibitors,classic plasmid-borne ESBL parent enzyme
+Metallo-beta-lactamase type 2,metallo_beta_lactamase_type_2,Carbapenem-resistant Gram-negatives,MBL inhibitors (investigational),NDM/IMP/VIM-class carbapenemase; no approved inhibitor
+Dihydrofolate reductase,dihydrofolate_reductase,Broad (ESKAPE + Mtb),diaminopyrimidines (trimethoprim),antifolate target; hit by trimetrexate/pralatrexate/methotrexate
+Thymidylate synthase,thymidylate_synthase,Broad,antifolates,folate-pathway target adjacent to DHFR
+DNA gyrase,dna_gyrase,Broad Gram-negative + Gram-positive,fluoroquinolones / aminocoumarins,validated type-II topoisomerase target
+Enoyl-[acyl-carrier-protein] reductase [NADH],enoyl_acyl_carrier_protein_reductase_nadh,M. tuberculosis,InhA inhibitors (isoniazid),FAS-II elongation; primary isoniazid target
+Enoyl-[acyl-carrier-protein] reductase [NADPH] FabI,enoyl_acyl_carrier_protein_reductase_nadph_fabi,S. aureus + Gram-negatives,FabI inhibitors (afabicin/triclosan),FAS-II enoyl reductase; validated antistaphylococcal target
+Mycobacterial beta-ketoacyl-[acyl-carrier-protein] synthase III,mycobacterial_beta_ketoacyl_acyl_carrier_protein_synthase_iii,M. tuberculosis,KasA/FabH inhibitors (investigational),FAS-II initiation condensing enzyme
+Peptide deformylase,peptide_deformylase,Broad Gram-positive + Gram-negative,PDF inhibitors (actinonin/GSK1322322),essential post-translational deformylation
+Isoleucine--tRNA ligase,isoleucine_trna_ligase,Broad + S. aureus,mupirocin,aminoacyl-tRNA synthetase; validated topical target
+Phosphotyrosine-protein phosphatase PTPB,phosphotyrosine_protein_phosphatase_ptpb,M. tuberculosis,PtpB inhibitors (investigational),secreted virulence phosphatase; host-directed

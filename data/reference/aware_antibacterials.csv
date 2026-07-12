@@ -1,0 +1,161 @@
+inn_name,aware_category,atc_hint,source
+amikacin,Access,J01GB06,WHO AWaRe 2023
+amoxicillin,Access,J01CA04,WHO AWaRe 2023
+ampicillin,Access,J01CA01,WHO AWaRe 2023
+azidocillin,Access,J01CE04,WHO AWaRe 2023
+bacampicillin,Access,J01CA06,WHO AWaRe 2023
+benzathine benzylpenicillin,Access,J01CE08,WHO AWaRe 2023
+benzylpenicillin,Access,J01CE01,WHO AWaRe 2023
+brodimoprim,Access,J01EA02,WHO AWaRe 2023
+cefacetrile,Access,J01DB10,WHO AWaRe 2023
+cefadroxil,Access,J01DB05,WHO AWaRe 2023
+cefalexin,Access,J01DB01,WHO AWaRe 2023
+cefaloridine,Access,J01DB02,WHO AWaRe 2023
+cefalotin,Access,J01DB03,WHO AWaRe 2023
+cefapirin,Access,J01DB08,WHO AWaRe 2023
+cefatrizine,Access,J01DB07,WHO AWaRe 2023
+cefazedone,Access,J01DB06,WHO AWaRe 2023
+cefazolin,Access,J01DB04,WHO AWaRe 2023
+cefradine,Access,J01DB09,WHO AWaRe 2023
+cefroxadine,Access,J01DB11,WHO AWaRe 2023
+ceftezole,Access,J01DB12,WHO AWaRe 2023
+chloramphenicol,Access,J01BA01,WHO AWaRe 2023
+clindamycin,Access,J01FF01,WHO AWaRe 2023
+clometocillin,Access,J01CE07,WHO AWaRe 2023
+cloxacillin,Access,J01CF02,WHO AWaRe 2023
+dicloxacillin,Access,J01CF01,WHO AWaRe 2023
+doxycycline,Access,J01AA02,WHO AWaRe 2023
+epicillin,Access,J01CA07,WHO AWaRe 2023
+flucloxacillin,Access,J01CF05,WHO AWaRe 2023
+gentamicin,Access,J01GB03,WHO AWaRe 2023
+metampicillin,Access,J01CA14,WHO AWaRe 2023
+methicillin,Access,J01CF03,WHO AWaRe 2023
+metronidazole,Access,J01XD01,WHO AWaRe 2023
+nafcillin,Access,J01CF06,WHO AWaRe 2023
+nitrofurantoin,Access,J01XE01,WHO AWaRe 2023
+oxacillin,Access,J01CF04,WHO AWaRe 2023
+penamecillin,Access,J01CE06,WHO AWaRe 2023
+phenoxymethylpenicillin,Access,J01CE02,WHO AWaRe 2023
+pivampicillin,Access,J01CA02,WHO AWaRe 2023
+pivmecillinam,Access,J01CA08,WHO AWaRe 2023
+procaine benzylpenicillin,Access,J01CE09,WHO AWaRe 2023
+spectinomycin,Access,J01XX04,WHO AWaRe 2023
+sulfadiazine,Access,J01EC02,WHO AWaRe 2023
+sulfamethoxazole,Access,J01EC01,WHO AWaRe 2023
+sulfamethoxazole/trimethoprim,Access,J01EE01,WHO AWaRe 2023
+co-trimoxazole,Access,J01EE01,WHO AWaRe 2023
+tetracycline,Access,J01AA07,WHO AWaRe 2023
+thiamphenicol,Access,J01BA02,WHO AWaRe 2023
+trimethoprim,Access,J01EA01,WHO AWaRe 2023
+azithromycin,Watch,J01FA10,WHO AWaRe 2023
+cefaclor,Watch,J01DC04,WHO AWaRe 2023
+cefamandole,Watch,J01DC03,WHO AWaRe 2023
+cefdinir,Watch,J01DD15,WHO AWaRe 2023
+cefditoren,Watch,J01DD16,WHO AWaRe 2023
+cefepime,Watch,J01DE01,WHO AWaRe 2023
+cefetamet,Watch,J01DD10,WHO AWaRe 2023
+cefixime,Watch,J01DD08,WHO AWaRe 2023
+cefmenoxime,Watch,J01DD05,WHO AWaRe 2023
+cefodizime,Watch,J01DD09,WHO AWaRe 2023
+cefonicid,Watch,J01DC06,WHO AWaRe 2023
+cefoperazone,Watch,J01DD12,WHO AWaRe 2023
+cefotaxime,Watch,J01DD01,WHO AWaRe 2023
+cefotetan,Watch,J01DC05,WHO AWaRe 2023
+cefotiam,Watch,J01DC07,WHO AWaRe 2023
+cefoxitin,Watch,J01DC01,WHO AWaRe 2023
+cefpiramide,Watch,J01DD11,WHO AWaRe 2023
+cefpodoxime,Watch,J01DD13,WHO AWaRe 2023
+cefprozil,Watch,J01DC10,WHO AWaRe 2023
+cefsulodin,Watch,J01DD03,WHO AWaRe 2023
+ceftazidime,Watch,J01DD02,WHO AWaRe 2023
+cefteram,Watch,J01DD18,WHO AWaRe 2023
+ceftibuten,Watch,J01DD14,WHO AWaRe 2023
+ceftizoxime,Watch,J01DD07,WHO AWaRe 2023
+ceftriaxone,Watch,J01DD04,WHO AWaRe 2023
+cefuroxime,Watch,J01DC02,WHO AWaRe 2023
+ciprofloxacin,Watch,J01MA02,WHO AWaRe 2023
+clarithromycin,Watch,J01FA09,WHO AWaRe 2023
+delafloxacin,Watch,J01MA23,WHO AWaRe 2023
+dirithromycin,Watch,J01FA13,WHO AWaRe 2023
+enoxacin,Watch,J01MA04,WHO AWaRe 2023
+ertapenem,Watch,J01DH03,WHO AWaRe 2023
+erythromycin,Watch,J01FA01,WHO AWaRe 2023
+fleroxacin,Watch,J01MA08,WHO AWaRe 2023
+fosfomycin,Watch,J01XX01,WHO AWaRe 2023
+gatifloxacin,Watch,J01MA16,WHO AWaRe 2023
+gemifloxacin,Watch,J01MA15,WHO AWaRe 2023
+imipenem/cilastatin,Watch,J01DH51,WHO AWaRe 2023
+josamycin,Watch,J01FA07,WHO AWaRe 2023
+levofloxacin,Watch,J01MA12,WHO AWaRe 2023
+lomefloxacin,Watch,J01MA07,WHO AWaRe 2023
+meropenem,Watch,J01DH02,WHO AWaRe 2023
+midecamycin,Watch,J01FA03,WHO AWaRe 2023
+moxifloxacin,Watch,J01MA14,WHO AWaRe 2023
+norfloxacin,Watch,J01MA06,WHO AWaRe 2023
+ofloxacin,Watch,J01MA01,WHO AWaRe 2023
+pazufloxacin,Watch,J01MA18,WHO AWaRe 2023
+pefloxacin,Watch,J01MA03,WHO AWaRe 2023
+piperacillin/tazobactam,Watch,J01CR05,WHO AWaRe 2023
+prulifloxacin,Watch,J01MA17,WHO AWaRe 2023
+rifabutin,Watch,J04AB04,WHO AWaRe 2023
+rifampicin,Watch,J04AB02,WHO AWaRe 2023
+roxithromycin,Watch,J01FA06,WHO AWaRe 2023
+rufloxacin,Watch,J01MA10,WHO AWaRe 2023
+sparfloxacin,Watch,J01MA09,WHO AWaRe 2023
+spiramycin,Watch,J01FA02,WHO AWaRe 2023
+teicoplanin,Watch,J01XA02,WHO AWaRe 2023
+telithromycin,Watch,J01FA15,WHO AWaRe 2023
+temocillin,Watch,J01CA17,WHO AWaRe 2023
+tosufloxacin,Watch,J01MA22,WHO AWaRe 2023
+troleandomycin,Watch,J01FA08,WHO AWaRe 2023
+vancomycin,Watch,J01XA01,WHO AWaRe 2023
+aztreonam,Reserve,J01DF01,WHO AWaRe 2023
+cefiderocol,Reserve,J01DI04,WHO AWaRe 2023
+ceftaroline fosamil,Reserve,J01DI02,WHO AWaRe 2023
+ceftazidime/avibactam,Reserve,J01DD52,WHO AWaRe 2023
+ceftobiprole medocaril,Reserve,J01DI01,WHO AWaRe 2023
+ceftolozane/tazobactam,Reserve,J01DI54,WHO AWaRe 2023
+colistin,Reserve,J01XB01,WHO AWaRe 2023
+dalbavancin,Reserve,J01XA04,WHO AWaRe 2023
+daptomycin,Reserve,J01XX09,WHO AWaRe 2023
+eravacycline,Reserve,J01AA13,WHO AWaRe 2023
+faropenem,Reserve,J01DI03,WHO AWaRe 2023
+fosfomycin intravenous,Reserve,J01XX01,WHO AWaRe 2023
+imipenem/cilastatin/relebactam,Reserve,J01DH56,WHO AWaRe 2023
+linezolid,Reserve,J01XX08,WHO AWaRe 2023
+meropenem/vaborbactam,Reserve,J01DH52,WHO AWaRe 2023
+minocycline intravenous,Reserve,J01AA08,WHO AWaRe 2023
+omadacycline,Reserve,J01AA15,WHO AWaRe 2023
+oritavancin,Reserve,J01XA05,WHO AWaRe 2023
+plazomicin,Reserve,J01GB14,WHO AWaRe 2023
+polymyxin b,Reserve,J01XB02,WHO AWaRe 2023
+tedizolid,Reserve,J01XX11,WHO AWaRe 2023
+telavancin,Reserve,J01XA03,WHO AWaRe 2023
+tigecycline,Reserve,J01AA12,WHO AWaRe 2023
+lefamulin,Reserve,J01XX12,WHO AWaRe 2023
+sarecycline,Reserve,J01AA14,WHO AWaRe 2023
+minocycline,Access,J01AA08,WHO AWaRe 2023
+isoniazid,anti-TB,J04AC01,WHO EML antituberculosis
+ethambutol,anti-TB,J04AK02,WHO EML antituberculosis
+pyrazinamide,anti-TB,J04AK01,WHO EML antituberculosis
+rifapentine,anti-TB,J04AB05,WHO EML antituberculosis
+bedaquiline,anti-TB,J04AK05,WHO EML antituberculosis
+delamanid,anti-TB,J04AK06,WHO EML antituberculosis
+pretomanid,anti-TB,J04AK08,WHO EML antituberculosis
+cycloserine,anti-TB,J04AB01,WHO EML antituberculosis
+terizidone,anti-TB,J04AK03,WHO EML antituberculosis
+ethionamide,anti-TB,J04AD03,WHO EML antituberculosis
+prothionamide,anti-TB,J04AD01,WHO EML antituberculosis
+para-aminosalicylic acid,anti-TB,J04AA01,WHO EML antituberculosis
+aminosalicylic acid,anti-TB,J04AA01,WHO EML antituberculosis
+capreomycin,anti-TB,J04AB30,WHO EML antituberculosis
+clofazimine,anti-leprosy,J04BA01,WHO EML antileprosy
+dapsone,anti-leprosy,J04BA02,WHO EML antileprosy
+secnidazole,off-label antibacterial,P01AB07,nitroimidazole antibacterial (bacterial vaginosis)
+tinidazole,off-label antibacterial,J01XD02,nitroimidazole antibacterial/antiprotozoal
+ornidazole,off-label antibacterial,J01XD03,nitroimidazole antibacterial/antiprotozoal
+nimorazole,off-label antibacterial,P01AB06,nitroimidazole antibacterial/antiprotozoal
+nitazoxanide,off-label antibacterial,P01AX11,off-label antibacterial (C. difficile / H. pylori)
+methenamine,urinary antibacterial,J01XX05,urinary tract antiseptic/antibacterial
+nitroxoline,urinary antibacterial,J01XX07,urinary tract antibacterial
+nifurtoinol,urinary antibacterial,J01XE02,nitrofuran urinary antibacterial

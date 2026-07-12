@@ -1,25 +1,60 @@
 [project]
-name = "amr-drug-repurposing"
+name = "amr-repurposing"
 version = "0.1.0"
-description = "Add your description here"
+description = "Deep-learning drug repurposing for antimicrobial resistance: screens FDA-approved non-antibiotic drugs against ESKAPE pathogens, with a target-resolved evidence layer."
 readme = "README.md"
 requires-python = ">=3.11"
+license = { file = "LICENSE" }
 dependencies = [
     "chembl-webresource-client>=0.10.9",
-    "datasets>=4.8.5",
     "httpx>=0.28.1",
+    "numpy>=2.0",
+    "pandas>=2.2",
+    "scikit-learn>=1.5",
     "imbalanced-learn>=0.14.1",
-    "jupyter>=1.1.1",
-    "lab>=8.9",
-    "matplotlib>=3.10.9",
-    "nest-asyncio>=1.6.0",
-    "numpy>=2.4.5",
-    "pandas>=3.0.3",
-    "rdkit>=2026.3.2",
-    "scikit-learn>=1.8.0",
+    "joblib>=1.4",
+    "rdkit>=2024.3",
+    "torch>=2.4",
+    "shap>=0.46",
+    "matplotlib>=3.9",
     "seaborn>=0.13.2",
-    "shap>=0.51.0",
-    "torch>=2.12.0",
-    "transformers>=5.8.1",
-    "accelerate>=1.1.0",
 ]
+
+[project.optional-dependencies]
+notebooks = [
+    "jupyter>=1.1.1",
+    "nest-asyncio>=1.6.0",
+]
+chembert = [
+    "transformers>=4.44",
+    "datasets>=2.20",
+    "accelerate>=0.34",
+]
+dev = [
+    "pytest>=8.0",
+]
+
+# One entry point per pipeline stage — run e.g. `amr-build-library`.
+[project.scripts]
+amr-fetch = "amr_repurposing.data.fetch_chembl:main"
+amr-fetch-eskape = "amr_repurposing.data.fetch_eskape:main"
+amr-build-library = "amr_repurposing.screen.library:main"
+amr-train = "amr_repurposing.models.train:main"
+amr-score = "amr_repurposing.screen.score:main"
+amr-clean-candidates = "amr_repurposing.screen.candidates:main"
+amr-build-targets = "amr_repurposing.screen.target_datasets:main"
+amr-train-targets = "amr_repurposing.models.target_qsar:main"
+amr-screen-targets = "amr_repurposing.screen.target_screen:main"
+amr-annotate = "amr_repurposing.screen.annotate:main"
+amr-figures = "amr_repurposing.viz.figures.make_all:main"
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/amr_repurposing"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q"
